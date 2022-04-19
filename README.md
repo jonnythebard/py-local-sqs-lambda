@@ -56,3 +56,19 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+
+## Run
+
+send message with python   
+```
+sqs = boto3.resource('sqs', endpoint_url='http://localhost:4566')
+queue = sqs.get_queue_by_name(QueueName='local-queue')
+queue.send_message(MessageBody='{"msg": "ok"}')
+```
+
+get logs   
+```
+aws logs describe-log-streams --endpoint-url http://localhost:4566 --log-group-name /aws/lambda/local-lambda
+aws --endpoint-url http://localhost:4566 logs get-log-events --log-group-name /aws/lambda/local-lambda --log-stream-name '<stram-name>'
+```
